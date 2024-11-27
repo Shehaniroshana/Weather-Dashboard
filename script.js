@@ -1,4 +1,5 @@
 
+
 async function search() {
     try {
         let CITY =document.getElementById("city").value; 
