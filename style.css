@@ -1,0 +1,10 @@
+
+#main{
+  background: linear-gradient(111deg, rgb(1, 39, 6) 0%, rgb(42, 132, 56) 90%);
+  border: 1px solid white;
+}
+.card{
+  background: linear-gradient(111deg, rgb(1, 62, 27) 0%, rgb(16, 161, 53) 90%);
+  color: white;
+  border: 1px solid white;
+}

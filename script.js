@@ -1,22 +1,14 @@
 
- async function search(){
-  let city=document.getElementById("location").value;
-  let key="39c21c8c2cc6205709e7d5f8611ff421"
-
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
-.then((r)=>r.json())
-.then((data)=>{
-  console.log(data);
-  document.getElementById("lname").innerHTML=data.name;
-
-       switch(data.weather[0].main){
-        case "Rain":
-          document.getElementById("icon").innerHTML=`<img src="im/c.png" alt="" style="width: 200px; padding: 20px; text-align: left; disply:flex;">`;
-        break;
-        case "Snow":
-         document.getElementById("icon").innerHTML=`<img src="im/snow.png" alt="" style="width: 200px; padding: 20px; text-align: left; disply:flex;">`;
-        break;
-       }
-}).catch((error)=>{console.log("error")}
-)
- } 
+async function search() {
+    try {
+        let CITY =document.getElementById("city").value; 
+        const r= await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${KEY}&units=metric`);
+        const data= await r.json();  
+        document.getElementById('temp').innerHTML= `${data.main.temp}°C`;
+        document.getElementById('humidity').innerHTML = `${data.main.humidity}%`;
+        document.getElementById('wind').innerHTML= `${data.wind.speed} km/h`;
+        console.log(data);
+    } catch (error) {
+        console.error("error");
+    }
+}
