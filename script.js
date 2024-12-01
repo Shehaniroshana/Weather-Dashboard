@@ -62,46 +62,39 @@
         }
 
         function initCharts(data) {
-            const tempChart = new Chart(document.getElementById('tempChart'), {
+            const labels = data.list.map(hour => new Date(hour.dt * 1000).getHours() + ':00');
+            const temperatureData = data.list.map(hour => hour.main.temp);
+            const humidityData = data.list.map(hour => hour.main.humidity);
+            const windSpeedData = data.list.map(hour => hour.wind.speed);
+        
+            new Chart(document.getElementById('weatherChart'), {
                 type: 'line',
                 data: {
-                    labels: data.list.map(hour => new Date(hour.dt * 1000).getHours() + ':00'),
-                    datasets: [{
-                        label: 'Temperature (°C)',
-                        data: data.list.map(hour => hour.main.temp),
-                        borderColor: '#4dff6e',
-                        fill: false
-                    }]
-                }
-            });
-
-            const humidityChart = new Chart(document.getElementById('humidityChart'), {
-                type: 'line',
-                data: {
-                    labels: data.list.map(hour => new Date(hour.dt * 1000).getHours() + ':00'),
-                    datasets: [{
-                        label: 'Humidity (%)',
-                        data: data.list.map(hour => hour.main.humidity),
-                        borderColor: ' #4dff6e',
-                        fill: false
-                    }]
-                }
-            });
-
-            const windChart = new Chart(document.getElementById('windChart'), {
-                type: 'line',
-                data: {
-                    labels: data.list.map(hour => new Date(hour.dt * 1000).getHours() + ':00'),
-                    datasets: [{
-                        label: 'Wind Speed (m/s)',
-                        data: data.list.map(hour => hour.wind.speed),
-                        borderColor: ' #4dff6e',
-                        fill: false
-                    }]
+                    labels: labels,  
+                    datasets: [
+                        {
+                            label: 'Temperature (°C)',
+                            data: temperatureData,
+                            borderColor: '#4CAF50', 
+                            fill: false
+                        },
+                        {
+                            label: 'Humidity (%)',
+                            data: humidityData,
+                            borderColor: '#2196F3', 
+                            fill: false
+                        },
+                        {
+                            label: 'Wind Speed (m/s)',
+                            data: windSpeedData,
+                            borderColor: '#FF5722',
+                            fill: false
+                        }
+                    ]
                 }
             });
         }
-
+        
         document.getElementById('city-search').addEventListener('input', async (e) => {
             const city = e.target.value;
             if (city) {
