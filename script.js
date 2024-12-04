@@ -1,4 +1,3 @@
-        const apiKey = '39c21c8c2cc6205709e7d5f8611ff421';
         const weatherIconBaseUrl = "http://openweathermap.org/img/wn/";
 
         
